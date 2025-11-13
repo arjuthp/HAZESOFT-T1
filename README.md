@@ -8,10 +8,12 @@ The `Dockerfile` automates the following tasks:
 - Uses the `alpine` linux image.
 - Installs `nginx` and `git`.
 - Clones the repository `https://github.com/veekrum/task`.
-- Copies the `site` folder from the cloned repository to the nginx document root `/var/www/html`.
+- Copies the `site` folder from the cloned repository to the nginx document root.
 - Exposes port 80.
 
 ## How to Run
+
+### Method 1: Running with Docker Locally
 
 1.  **Build the Docker image:**
     ```sh
@@ -19,22 +21,16 @@ The `Dockerfile` automates the following tasks:
     ```
 
 2.  **Run the Docker container:**
-    To expose the website on port 9000 of your local machine, run the following command:
     ```sh
     docker run -d -p 9000:80 --name hazesoft-t1-container hazesoft-t1
     ```
 
 3.  **Access the website:**
-    Open your web browser and navigate to [http://localhost:9000/site/index.html](http://localhost:9000/site/index.html). You should see the message "You did it, Congratulations!!".
+    Open your web browser and navigate to [http://localhost:9000/site/index.html](http://localhost:9000/site/index.html).
 
-## To Stop and Remove the Container
+### Method 2: Deploying with Ansible to a VM
 
-1.  **Stop the container:**
-    ```sh
-    docker stop hazesoft-t1-container
-    ```
+When this project is deployed to a Virtual Machine via Ansible (as per Task 2), the URL will be different.
 
-2.  **Remove the container:**
-    ```sh
-    docker rm hazesoft-t1-container
-    ```
+-   **To access from your browser:** Use the VM's IP address, like so: `http://<VM_IP_ADDRESS>:9000/site/index.html`
+-   **To verify from the command line (as per Task 2 requirements):** SSH into the VM and use `localhost`: `ssh user@<VM_IP_ADDRESS> "curl http://localhost:9000/site/index.html"`

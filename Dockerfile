@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache nginx git
 RUN git clone https://github.com/veekrum/task /app
 
 # Copy the website files to the nginx document root
-RUN cp -r /app/site/. /var/www/html/
+RUN mkdir -p /var/www/html && cp -r /app/site /var/www/html/
 
 # Copy custom nginx configuration
 COPY my-site.conf /etc/nginx/http.d/default.conf
